@@ -16,33 +16,7 @@ void Setup() {
   fruitY = rand() % height;
   score = 0;
 }
-// void Draw() {
-//   system("clear");
-//   for (int i = 0; i < width + 2; i++)
-//     cout << "#";
-//   cout << endl;
 
-//   for (int i = 0; i < height; i++) {
-//     for (int j = 0; j < width; j++) {
-//       if (j == 0)
-//         cout << "#";
-//       if (i == y && j == x)
-//         cout << "O";
-//       else if (i == fruitY && j == fruitX)
-//         cout << "F";
-//       else
-//         cout << " ";
-
-//       if (j == width - 1)
-//         cout << "#";
-//     }
-//     cout << endl;
-//   }
-
-//   for (int i = 0; i < width + 2; i++)
-//     cout << "#";
-//   cout << endl;
-// }
 void Draw() {
     // Limpar a tela
     clear();
@@ -75,6 +49,8 @@ void Draw() {
     napms(120);
     // Atualizar a tela
     refresh();
+    cout << endl;
+    cout << "Score:" << score << endl;
 }
 void Input() {
   int key = getch();
@@ -117,6 +93,11 @@ void Logic() {
   }
   if (x > width || x < 0 || y > height || y < 0)
     gameOver = true;
+  if (x == fruitX && y == fruitY) {
+    score += 10;
+    fruitX = rand() % width;
+    fruitY = rand() % height;
+  }
 }
 int main() {
   // Configurando o leitor de teclas
